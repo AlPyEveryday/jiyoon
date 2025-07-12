@@ -7,6 +7,6 @@ def solution(name, yearning, photo):
     for photoname in photo:
         for i in range(arrlen):
             if name[i] in photoname:answer[j]+=yearning[i]
-        j+=1
+        j+=1 
            
     return answer

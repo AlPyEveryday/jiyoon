@@ -7,7 +7,7 @@ def solution(babbling):
         arrlen2=len(babbling[i])
         while(1):
             if j>=arrlen2:
-                break
+                break 
             if babbling[i][j]=='a':
                 if 'aya' in babbling[i][j:j+3]:
                     j+=3
