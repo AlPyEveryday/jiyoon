@@ -1,0 +1,103 @@
+def solution(numbers, hand):
+    answer = ''
+    distance={}
+    distance[1]={}
+    distance[4]={}
+    distance[7]={}
+    distance[3]={}
+    distance[6]={}
+    distance[9]={}
+    distance["*"]={}
+    distance["#"]={}
+    distance[2]={}
+    distance[5]={}
+    distance[8]={}
+    distance[0]={}
+    
+    distance[1][2]=1
+    distance[1][5]=2
+    distance[1][8]=3
+    distance[1][0]=4
+    
+    distance[4][2]=2
+    distance[4][5]=1
+    distance[4][8]=2
+    distance[4][0]=3
+    
+    distance[7][2]=3
+    distance[7][5]=2
+    distance[7][8]=1
+    distance[7][0]=2
+    
+    distance[3][2]=1
+    distance[3][5]=2
+    distance[3][8]=3
+    distance[3][0]=4
+    
+    distance[6][2]=2
+    distance[6][5]=1
+    distance[6][8]=2
+    distance[6][0]=3
+    
+    distance[9][2]=3
+    distance[9][5]=2
+    distance[9][8]=1
+    distance[9][0]=2
+    
+    distance["*"][2]=4
+    distance["*"][5]=3
+    distance["*"][8]=2
+    distance["*"][0]=1
+    
+    distance["#"][2]=4
+    distance["#"][5]=3
+    distance["#"][8]=2
+    distance["#"][0]=1
+    
+    distance[2][5]=1
+    distance[2][8]=2
+    distance[2][0]=3
+    distance[2][2]=0
+    
+    distance[5][2]=1
+    distance[5][8]=1
+    distance[5][0]=2
+    distance[5][5]=0
+    
+    distance[8][2]=2
+    distance[8][5]=1
+    distance[8][0]=1
+    distance[8][8]=0
+    
+    distance[0][2]=3
+    distance[0][5]=2
+    distance[0][8]=1
+    distance[0][0]=0
+    
+    prevL="*"
+    prevR="#"
+    for n in numbers:
+        if n in [1,4,7]:
+            answer+="L"
+            prevL=n
+        elif n in [3,6,9]:
+            answer+="R"
+            prevR=n
+        elif n in [2,5,8,0]:
+            distanceL=distance[prevL][n]
+            distanceR=distance[prevR][n]
+            if distanceL>distanceR:
+                answer+="R"
+                prevR=n
+            elif distanceL<distanceR:
+                answer+="L"
+                prevL=n
+            else:
+                if hand=="left":
+                    answer+="L"
+                    prevL=n
+                elif hand=="right":
+                    answer+="R"
+                    prevR=n
+            
+    return answer

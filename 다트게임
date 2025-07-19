@@ -1,0 +1,33 @@
+def solution(dartResult):
+    answer = 0
+    llen=len(dartResult)
+    prev=0
+    i=0
+    while(i<llen):
+        if dartResult[i+1] not in ["S","D","T","*","#"]:
+            num=10
+            i+=1
+        else:num=int(dartResult[i])
+        if dartResult[i+1]=="S":now=num**1
+        if dartResult[i+1]=="D":now=num**2
+        if dartResult[i+1]=="T":now=num**3
+        if i+2<=llen:
+            if i+2==llen:
+                answer+=prev
+                answer+=now
+                break
+            elif dartResult[i+2]=="*":
+                now*=2
+                answer+=prev*2
+            elif dartResult[i+2]=="#":
+                now*=(-1)
+                answer+=prev
+            else:
+                answer+=prev
+            if i+3==llen:
+                answer+=now   
+            prev=now
+            if dartResult[i+2]=="*"or dartResult[i+2]=="#":i+=1
+        i+=2
+        
+    return answer
